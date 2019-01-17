@@ -9,7 +9,6 @@ data_path <- here::here("data", "2019", file_name) # local file
 likert_data_raw <-  
   read_csv(data_path,
     col_types = cols(
-      id = col_integer(),
       fecha = col_character(),
       turno = col_integer(),
       curso = col_character(),
@@ -23,10 +22,9 @@ likert_data_raw <-
 
 likert_levels <- c(-2, -1, 0, 1, 2)
 likert_labels <- c("Muy en desacuerdo","En desacuerdo","Neutro","De acuerdo","Muy de acuerdo")
-turno_levels <- c(1,2)
 turno_labels <- c("Primer: 10-12", "Segundo: 12-14")
 #likert_data_raw$turno <- factor(likert_data_raw$turno, turno_levels, turno_labels)
-likert_data_raw[5:9] <- lapply(likert_data_raw[5:9], factor, levels=likert_levels, labels=likert_labels)
+likert_data_raw[4:8] <- lapply(likert_data_raw[4:8], factor, levels=likert_levels, labels=likert_labels)
 likert_data_raw$turno <- sapply(X = likert_data_raw$turno, FUN = function(x) {turno_labels[x]}) 
 
 
@@ -40,7 +38,7 @@ names(likert_data_raw_df) <- c("Turno",
 
 
 #' En caso de agrupar por "turno", https://stackoverflow.com/questions/48340901/using-likert-package-in-r-for-analyzing-real-survey-data
-likert_data_df <- likert(items=likert_data_raw_df[,c(2:6)], grouping = likert_data_raw_df$Turno)
+likert_data_df <- likert(items=likert_data_raw_df[,c(2:6)], grouping = order(likert_data_raw_df$Turno))
 
 
 title <- "'Ejemplo Likert con datos simulados'"
