@@ -39,18 +39,35 @@ likert_data_df <- likert(items=likert_data_raw_df[,c(3:7)], grouping = factor(li
 summary(likert_data_df)
        
 title <- "Encuesta 'Practica la UJI' 2019"
-plot(likert_data_df, centered = FALSE) + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5)) + 
+plotlikert <- plot(likert_data_df, centered = FALSE) + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5)) + 
   guides(fill=guide_legend(title=c("Respuestas"), nrow = 1))
+plotlikert
 
-
-file_name = "encuesta2019.svg"
+file_name = "encuesta2019-likert.svg"
 data_path <- here::here("figs", file_name) # local file
-svg(filename=data_path, width=6.5, height=3, pointsize=10)
-plot(likert_data_df, centered = FALSE) + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5)) + 
-    guides(fill=guide_legend(title=c("Respuestas"), nrow = 1))
+svg(filename=data_path, width=10, height=6, pointsize=10)
+plotlikert
 dev.off()
 
+file_name = "encuesta2019-likert.png"
+data_path <- here::here("figs", file_name) # local file
+png(filename=data_path, width=650, height=480, units="px", pointsize=10)
+plotlikert
+dev.off()
 
-plot(likert_data_df, type = 'heat') + ggtitle(title) + 
+plotheat <- plot(likert_data_df, type = 'heat') + ggtitle(title) + 
   theme(legend.position = 'none')
+
+file_name = "encuesta2019-heat.svg"
+data_path <- here::here("figs", file_name) # local file
+svg(filename=data_path, width=10, height=6, pointsize=10)
+plotheat
+dev.off()
+
+file_name = "encuesta2019-heat.png"
+data_path <- here::here("figs", file_name) # local file
+png(filename=data_path, width=650, height=480, units="px", pointsize=10)
+plotheat
+dev.off()
+
 
