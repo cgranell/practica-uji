@@ -3,8 +3,8 @@ library(likert)
 library(tidyverse)
 library(here)
 
-file_name = "encuesta2019.csv"
-data_path <- here::here("data", "2019", file_name) # local file
+file_name = "fake.csv"
+data_path <- here::here("data", file_name) # local file
 
 likert_data_raw <-  
   read_csv(data_path,
