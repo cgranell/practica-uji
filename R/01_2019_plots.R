@@ -19,6 +19,7 @@ turno_labels <- c("Primer: 10-12", "Segundo: 12-14")
 likert_data_raw[4:8] <- lapply(likert_data_raw[4:8], factor, levels=likert_levels, labels=likert_labels)
 likert_data_raw$turno <- sapply(X = likert_data_raw$turno, FUN = function(x) {turno_labels[x]}) 
 
+num_respondents <- nrow(likert_data_raw)
 
 likert_data_raw_df <- as.data.frame(select(likert_data_raw, c("fecha","turno","p1","p2","p3","p4","p5")))
 names(likert_data_raw_df) <- c("Fecha", 
@@ -36,7 +37,7 @@ likert_data_df <- likert(items=likert_data_raw_df[,c(3:7)], grouping = factor(li
 
 summary(likert_data_df)
        
-title <- "Encuesta 'Practica la UJI' 2019 [Survey 'Practica la UJI' 2019]"
+title <- paste0("Encuesta 'Practica la UJI' 2019 [Survey 'Practica la UJI' 2019]", ", N=", num_respondents)
 plotlikert <- plot(likert_data_df, centered = FALSE) + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5)) + 
   guides(fill=guide_legend(title=c("Respuestas [Responses]"), nrow = 1))
 plotlikert
