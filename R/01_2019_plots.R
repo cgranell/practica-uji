@@ -39,18 +39,18 @@ summary(likert_data_df)
        
 title <- paste0("Encuesta 'Practica la UJI' 2019 [Survey 'Practica la UJI' 2019]", ", N=", num_respondents)
 plotlikert <- plot(likert_data_df, centered = FALSE) + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5)) + 
-  guides(fill=guide_legend(title=c("Respuestas [Responses]"), nrow = 1))
+  guides(fill=guide_legend(title=c("Respuestas [Responses]"), nrow = 2))
 plotlikert
 
 file_name = "encuesta2019-likert.svg"
 data_path <- here::here("figs", file_name) # local file
-svg(filename=data_path, width=10, height=6, pointsize=10)
+svg(filename=data_path, width=13, height=6, pointsize=10)
 plotlikert
 dev.off()
 
 file_name = "encuesta2019-likert.png"
 data_path <- here::here("figs", file_name) # local file
-png(filename=data_path, width=650, height=480, units="px", pointsize=10)
+png(filename=data_path, width=850, height=480, units="px", pointsize=12)
 plotlikert
 dev.off()
 
