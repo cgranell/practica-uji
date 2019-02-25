@@ -46,7 +46,7 @@ if (short_names) {
 
 #' En caso de agrupar por "turno", https://stackoverflow.com/questions/48340901/using-likert-package-in-r-for-analyzing-real-survey-data
 likert_data_df <- likert(items=likert_data_raw_df[,c(3:7)])
-likert_data_df <- likert(items=likert_data_raw_df[,c(3:7)], grouping = factor(likert_data_raw_df$Fecha))
+# likert_data_df <- likert(items=likert_data_raw_df[,c(3:7)], grouping = factor(likert_data_raw_df$Fecha))
 
 summary(likert_data_df)
        
